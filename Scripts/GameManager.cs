@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(kills);
         DrawLives();
         UpdateCharacteristics();
         if(enemies_left <= kills){
@@ -60,10 +59,18 @@ public class GameManager : MonoBehaviour
         }
         if(gameEnded){
              if (Input.anyKeyDown) {
-                //SceneManager.LoadScene("SampleScene"); 
-                SceneManager.LoadScene("EMPTYSCENE");
+                SceneManager.LoadScene("SampleScene"); 
+                //PlayerController.inventory.Container.Items = new InventorySlot[14];
+                //SceneManager.LoadScene("EMPTYSCENE");
             }
         }
+        /*
+        if (Input.GetKeyDown("r")) {
+            PlayerController.inventory.Container.Items = new InventorySlot[14];
+            Player.SetActive(false);
+            GameObject.Find("InventoryScreen").GetComponent<DisplayInventory>().CreateSlots();
+            //SceneManager.LoadScene("EMPTYSCENE");
+        }*/
     }
 
     IEnumerator Wavego()
@@ -149,7 +156,7 @@ public class GameManager : MonoBehaviour
             // particles.transform.SetParent(Player.transform);
             particles.transform.position = Player.transform.position;
             
-            Destroy(Player);
+            //Destroy(Player);
         }
     }
 }

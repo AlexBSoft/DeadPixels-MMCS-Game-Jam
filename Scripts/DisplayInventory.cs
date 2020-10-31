@@ -28,7 +28,7 @@ public class DisplayInventory : MonoBehaviour
     void Start()
     {
         CreateSlots();
-        StartCoroutine(SetEInventory());
+        //StartCoroutine(SetEInventory());
     }
     void Update()
     {
@@ -39,13 +39,20 @@ public class DisplayInventory : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
+        Debug.Log("IN Length: "+inventory.Container.Items.Length);
         for(int i = 0; i<inventory.Container.Items.Length;i++){
             InventorySlot slot = inventory.Container.Items[i];
+            Debug.Log("IN SLOT: "+slot);
             var obj = Instantiate(slotObject, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition (i);
             obj.GetComponentInChildren<TextMeshProUGUI>().text=slot.amount.ToString("n0");
-            obj.GetComponent<Image>().sprite = slot.item.image;
-            itemsDisplayed.Add(obj,slot);
+            if(slot.item.Name!=null){
+                obj.GetComponent<Image>().sprite = slot.item.image;
+                itemsDisplayed.Add(obj,slot);
+            }else{
+                obj.GetComponent<Image>().sprite = null;
+                itemsDisplayed.Add(obj,slot);
+            }
             AddEvent(obj, EventTriggerType.PointerEnter, delegate{OnEnter(obj);});
             AddEvent(obj, EventTriggerType.PointerExit, delegate{OnExit(obj);});
             AddEvent(obj, EventTriggerType.BeginDrag, delegate{OnDragStart(obj);});
@@ -78,6 +85,7 @@ public class DisplayInventory : MonoBehaviour
     public void UpdateSlots(){
         foreach (KeyValuePair<GameObject,InventorySlot> _slot in itemsDisplayed)
         {
+            Debug.Log(_slot.Value);
             if(_slot.Value.Id >= 0){
                 _slot.Key.transform.GetComponent<Image>().sprite = _slot.Value.item.image;
                 _slot.Key.transform.GetComponent<Image>().color = new Color(1,1,1,1);
@@ -99,8 +107,8 @@ public class DisplayInventory : MonoBehaviour
             InventorySlot slot = inventory.Container.Items[i];
             var obj = Instantiate(slotObject, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition (i);
-            obj.GetComponentInChildren<TextMeshProUGUI>().text=slot.amount.ToString("n0");
-            obj.GetComponent<Image>().sprite = slot.item.image;
+            //obj.GetComponentInChildren<TextMeshProUGUI>().text="";
+            obj.GetComponent<Image>().color = new Color(1,1,1,0);
             itemsDisplayed.Add(obj,slot);
             AddEvent(obj, EventTriggerType.PointerEnter, delegate{OnEnter(obj);});
             AddEvent(obj, EventTriggerType.PointerExit, delegate{OnExit(obj);});

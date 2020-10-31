@@ -11,7 +11,7 @@ public class Inventory : ScriptableObject
         //SetEmptySlot(_item, _amount);
         //bool hasItem = false;
         for(int i = 0; i < Container.Items.Length; i++){
-            if(Container.Items[i].Id == _item.Id && Container.Items[i].item.stackable){
+            if(Container.Items[i].Id!= -1&&Container.Items[i].Id == _item.Id && Container.Items[i].item.stackable){
                 Container.Items[i].AddAmount(_amount);
                 //hasItem = true;
                 return Container.Items[i];
@@ -65,13 +65,6 @@ public class Inventory : ScriptableObject
 }
 
 
-
-/*
-[System.Serializable]
-public class InventoryList {
-    public List<InventorySlot> Items = new List<InventorySlot>();
-}
-*/
 [System.Serializable]
 public class InventoryList {
     public InventorySlot[] Items = new InventorySlot[14];
@@ -84,8 +77,8 @@ public class InventorySlot {
     public int amount;
     public InventorySlot(){
         Id = -1;
-        item = null;
-        amount = 0;
+        item = new ItemData(null);
+        amount = -1;
     }
     public InventorySlot(int _id, ItemData _item, int _amount){
         Id = _id;

@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     //public List<> 
 
     public Dictionary<PlayerBuffs, int> characteristics = new Dictionary<PlayerBuffs, int>(){
-        {PlayerBuffs.strength, 155},
-        {PlayerBuffs.agility, 30},
-        {PlayerBuffs.intelligence, 155}
+        {PlayerBuffs.strength, 8},
+        {PlayerBuffs.agility, 8},
+        {PlayerBuffs.intelligence, 8}
     };
     public Dictionary<string, int> PlayerCurses = new Dictionary<string, int>(){
         {"blindness", -1},
