@@ -80,6 +80,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SetCurse(string type, int a = 1){
+        if(PlayerCurses[type]!=-1)
+            return;
+
         if(type == "confusion"){
             PlayerCurses[type] = a;
             GetComponent<PlayerMovement>().moveSpeedModifier *= -a;
@@ -104,7 +107,8 @@ public class PlayerController : MonoBehaviour
     }
     public void ClearAll(){
         //inventory.Container.Items.Clear();
-        inventory.Container.Items = new InventorySlot[14];
+        //inventory.Container.Items = new InventorySlot[14];
+        inventory.SetAllSlotsEmpty();
         Dictionary<PlayerBuffs, int> characteristics = new Dictionary<PlayerBuffs, int>(){
             {PlayerBuffs.strength, 6},
             {PlayerBuffs.agility, 6},

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2506463437119627067}
   - component: {fileID: 8830405021627570058}
   - component: {fileID: 7452770469777971367}
-  - component: {fileID: 2811944814810849563}
+  - component: {fileID: 175349430553225223}
   m_Layer: 0
   m_Name: EnemyShoting
   m_TagString: Enemy
@@ -137,8 +137,8 @@ MonoBehaviour:
   retreatDistance: 4
   startTimeBtwShots: 2
   projecttile: {fileID: 6013353557645247106, guid: 6d943b18b64783d45adbcca1a6de1ef2, type: 3}
---- !u!58 &2811944814810849563
-CircleCollider2D:
+--- !u!60 &175349430553225223
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,5 +151,20 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.44487858, y: 0.4338392}
+      - {x: -0.44487858, y: -0.43751484}
+      - {x: 0.39340305, y: -0.444866}
+      - {x: 0.44120407, y: -0.3933928}
+      - {x: 0.4375291, y: 0.099315256}
+      - {x: 0.1213541, y: 0.42648804}

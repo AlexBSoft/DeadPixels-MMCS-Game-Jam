@@ -16,7 +16,7 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
         if(Input.GetMouseButtonDown(0)){
-            Debug.Log("FIRE");
+            //Debug.Log("FIRE");
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //var bullet = Instantiate(projecttile, transform.position, Quaternion.identity);
             //bullet.target = new Vector2(Input.x, player.position.y);

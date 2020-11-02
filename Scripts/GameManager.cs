@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         DrawLives();
         UpdateCharacteristics();
-        if(enemies_left <= kills){
+        if(enemies_left <= kills && GameObject.Find("EnemiesHolder").transform.childCount < 1){
             totalkills+=kills;
             kills=0;
             wave_number++;
@@ -64,13 +64,14 @@ public class GameManager : MonoBehaviour
                 //SceneManager.LoadScene("EMPTYSCENE");
             }
         }
-        /*
+        
         if (Input.GetKeyDown("r")) {
-            PlayerController.inventory.Container.Items = new InventorySlot[14];
-            Player.SetActive(false);
+            //PlayerController.inventory.Container.Items = new InventorySlot[14];
+            //Player.SetActive(false);
+            PlayerController.ClearAll();
             GameObject.Find("InventoryScreen").GetComponent<DisplayInventory>().CreateSlots();
             //SceneManager.LoadScene("EMPTYSCENE");
-        }*/
+        }
     }
 
     IEnumerator Wavego()
@@ -90,13 +91,17 @@ public class GameManager : MonoBehaviour
         {
             int pro = Random.Range(1,100);
             if(pro <=50){
-                Instantiate(enemy1,new Vector3(Random.Range(-10,10),Random.Range(-10,10)),Quaternion.identity);
+                CreateEnemy(enemy1);
             }else if(pro > 50 && pro <= 80){
-                Instantiate(enemy2,new Vector3(Random.Range(-10,10),Random.Range(-10,10)),Quaternion.identity);
+                CreateEnemy(enemy2);
             }else if(pro > 80 && pro <=100){
-                Instantiate(enemy3,new Vector3(Random.Range(-10,10),Random.Range(-10,10)),Quaternion.identity);
+                CreateEnemy(enemy3);
             }
         }
+    }
+    public void CreateEnemy(GameObject prefab){
+        var enemy = Instantiate(prefab,new Vector3(Random.Range(-10,10),Random.Range(-10,10)),Quaternion.identity);
+        enemy.transform.SetParent(GameObject.Find("EnemiesHolder").transform);
     }
 
     public void LogText(string text){
@@ -156,7 +161,7 @@ public class GameManager : MonoBehaviour
             // particles.transform.SetParent(Player.transform);
             particles.transform.position = Player.transform.position;
             
-            //Destroy(Player);
+            Destroy(Player);
         }
     }
 }

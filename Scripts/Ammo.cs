@@ -40,7 +40,6 @@ public class Ammo : MonoBehaviour
         //Debug.Log(other.tag);
         if (other.tag == "Enemy")
         {
-            Destroy(gameObject);
             if(other.GetComponent<EnemyMain>()){
                 other.GetComponent<EnemyMain>().lives-= Mathf.Abs(GameManager.instance.PlayerController.characteristics[0]);
                 if(other.GetComponent<EnemyMain>().lives < 1){
@@ -51,12 +50,13 @@ public class Ammo : MonoBehaviour
                     //GameManager.instance.kills+=1;
                 }
             }
-
-           
-
+        Destroy(gameObject);
         }
         if (other.tag == "Obstacle"){
             Destroy(gameObject);
         }
+    }
+    private void OnColliderEnter2D(Collider2D other){
+        Debug.Log(other);
     }
 }

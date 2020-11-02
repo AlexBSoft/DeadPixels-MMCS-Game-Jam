@@ -62,6 +62,15 @@ public class Inventory : ScriptableObject
             }
         }   
     }
+
+    public void SetAllSlotsEmpty(){
+        for (int i = 0; i < Container.Items.Length; i++)
+        {  
+            Container.Items[i].item = null;
+            Container.Items[i].amount = 0;
+            Container.Items[i].Id = -1;
+        }
+    }
 }
 
 
@@ -70,6 +79,7 @@ public class InventoryList {
     public InventorySlot[] Items = new InventorySlot[14];
 }
 
+
 [System.Serializable]
 public class InventorySlot {
     public int Id = -1;
@@ -77,8 +87,8 @@ public class InventorySlot {
     public int amount;
     public InventorySlot(){
         Id = -1;
-        item = new ItemData(null);
-        amount = -1;
+        item = null;
+        amount = 0;
     }
     public InventorySlot(int _id, ItemData _item, int _amount){
         Id = _id;

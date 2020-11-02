@@ -85,7 +85,8 @@ public class DisplayInventory : MonoBehaviour
     public void UpdateSlots(){
         foreach (KeyValuePair<GameObject,InventorySlot> _slot in itemsDisplayed)
         {
-            Debug.Log(_slot.Value);
+            //Debug.Log(_slot.Value);
+            //Debug.Log(_slot.Key);
             if(_slot.Value.Id >= 0){
                 _slot.Key.transform.GetComponent<Image>().sprite = _slot.Value.item.image;
                 _slot.Key.transform.GetComponent<Image>().color = new Color(1,1,1,1);
@@ -100,6 +101,7 @@ public class DisplayInventory : MonoBehaviour
     }
 
     public void CreateSlots(){
+        //GameManager.instance.Player.GetComponent<PlayerController>().inventory.Container.Items = new InventorySlot[14];
         itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
 
 
